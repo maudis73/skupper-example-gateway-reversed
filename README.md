@@ -59,9 +59,10 @@ using a dedicated service network.
 * Access to a Kubernetes cluster, from [any provider you
   choose][kube-providers]
 
-* The `starlette` and `uvicorn` Python modules.  This is required to
-  run the backend service locally.  To install the modules, run `pip
-  install starlette uvicorn`.
+* The `httpx`, `starlette`, `sse_starlette`, and `uvicorn` Python
+  modules.  This is required to run the frontend service locally.
+  To install the modules, run `pip install httpx starlette
+  sse_starlette uvicorn`.
 
 [install-docker]: https://docs.docker.com/engine/install/
 [install-podman]: https://podman.io/getting-started/installation
