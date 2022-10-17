@@ -1,6 +1,6 @@
 # Skupper Hello World using the gateway
 
-[![main](https://github.com/skupperproject/skupper-example-gateway/actions/workflows/main.yaml/badge.svg)](https://github.com/skupperproject/skupper-example-gateway/actions/workflows/main.yaml)
+[![main](https://github.com/ssorj/skupper-example-gateway-reversed/actions/workflows/main.yaml/badge.svg)](https://github.com/ssorj/skupper-example-gateway-reversed/actions/workflows/main.yaml)
 
 #### Connect services running as system processes
 
@@ -41,7 +41,7 @@ It contains two services:
 * A frontend service that sends greetings to the backend and
   fetches new greetings in response.
 
-The frontend runs on Kubernetes and the backend runs on your local
+The backend runs on Kubernetes and the frontend runs on your local
 machine.  Skupper enables the frontend to connect to the backend
 using a dedicated service network.
 
@@ -169,13 +169,13 @@ podman`) or as a systemd service (`--type service`).
 
 ## Step 6: Deploy the frontend and backend services
 
-For this example, we are running the frontend on Kubernetes and
-the backend as a local system process.
+For this example, we are running the backend on Kubernetes and
+the frontend as a local system process.
 
-Use `kubectl create deployment` to deploy the frontend service
+Use `kubectl create deployment` to deploy the backend service
 in `hello-world`.
 
-Change to the `backend` directory and use `python
+Change to the `frontend` directory and use `python
 python/main.py` to start the backend process.  You can run this in a
 different terminal if you prefer.
 
@@ -196,8 +196,9 @@ deployment.apps/backend created
 ## Step 7: Expose the backend service
 
 Use `skupper service create` to define a Skupper service called
-`backend`.  Then use `skupper gateway bind` to attach your
-running backend process as a target for the service.
+`backend`.  Use `skupper servce bind` to associate it with your
+backend deployment.  Use `skupper gateway forward` to link local
+requests to port 8081 to the new service.
 
 _**Console for hello-world:**_
 
